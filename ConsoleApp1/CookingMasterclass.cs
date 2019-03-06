@@ -7,27 +7,28 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            double budget = double.Parse(Console.ReadLine());
+            decimal budget = decimal.Parse(Console.ReadLine());
             int students = int.Parse(Console.ReadLine());
-            double flourPerPackage = double.Parse(Console.ReadLine());
-            double eggPerPiece = double.Parse(Console.ReadLine());
-            double apronPerPiece = double.Parse(Console.ReadLine());
+            decimal flourPerPackage = decimal.Parse(Console.ReadLine());
+            decimal eggPerPiece = decimal.Parse(Console.ReadLine());
+            decimal apronPerPiece = decimal.Parse(Console.ReadLine());
 
-            double flourBudget = 0;
+            decimal flourBudget = 0;
             if (students < 5)
             {
                 flourBudget = students * flourPerPackage;
             }
             else
             {
-                flourBudget = students * (flourPerPackage - (flourPerPackage * 0.2));
+                flourBudget = students * (flourPerPackage - (flourPerPackage * (decimal)0.2));
             }
             
-            double eggBudget = eggPerPiece * 10 * students;
-            double apronBudget = apronPerPiece * (students + (students * 0.2));
-            apronBudget = Math.Ceiling(apronBudget);
+            decimal eggBudget = eggPerPiece * 10 * students;
+            decimal apronsNeeded = Math.Ceiling(students +(decimal)(students * 0.2));
+            decimal apronBudget = apronPerPiece * apronsNeeded ;
+            
 
-            double budgetNeeded = flourBudget + eggBudget + apronBudget;
+            decimal budgetNeeded = flourBudget + eggBudget + apronBudget;
 
             if (budget >= budgetNeeded)
             {
@@ -35,7 +36,7 @@ namespace ConsoleApp1
             }
             else
             {
-                double notEnough = budgetNeeded - budget;
+                decimal notEnough = budgetNeeded - budget;
                 Console.WriteLine($"{notEnough:F2}$ more needed.");
             }
         }

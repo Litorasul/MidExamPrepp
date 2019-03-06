@@ -8,29 +8,31 @@ namespace P02.BreadFactory
         static void Main(string[] args)
         {
             string[] input = Console.ReadLine().Split("|").ToArray();
-            int energy = 100;
-            int coins = 100;
+            long energy = 100;
+            long coins = 100;
 
             for (int i = 0; i < input.Length; i++)
             {
                 string[] events = input[i].Split("-").ToArray();
                 string eventName = events[0];
-                int eventPower = int.Parse(events[1]);
+                long eventPower = long.Parse(events[1]);
 
                 if (eventName == "rest")
                 {
-                    int energyTemp = energy + eventPower;
-                    if (energyTemp < 100)
+                    long currentEnergy = energy;
+                    energy += eventPower;
+
+                    if (energy > 100)
                     {
-                        energy = energyTemp;
-                        Console.WriteLine($"You gained {eventPower} energy.");
-                        Console.WriteLine($"Current energy: {energy}.");
+                        
+                        Console.WriteLine($"You gained {100 - currentEnergy} energy.");
+                        Console.WriteLine($"Current energy: 100.");
+                        energy = 100;
                     }
                     else
                     {
-                        energy = 100;
-                        int healedFor = eventPower - (energyTemp - 100);
-                        Console.WriteLine($"You gained {healedFor} energy.");
+                        
+                        Console.WriteLine($"You gained {eventPower} energy.");
                         Console.WriteLine($"Current energy: {energy}.");
 
                     }
@@ -60,17 +62,17 @@ namespace P02.BreadFactory
                     else
                     {
                         Console.WriteLine($"Closed! Cannot afford {eventName}.");
-                        break;
+                        return;
                     }
                 }
             }
 
-            if (coins >= 0)
-            {
-                Console.WriteLine("Day completed!"
-                    + Environment.NewLine + $"Coins: {coins}"
-                    + Environment.NewLine + $"Energy: {energy}");
-            }
+
+
+            Console.WriteLine("Day completed!");
+            Console.WriteLine($"Coins: {coins}");
+            Console.WriteLine($"Energy: {energy}");
+           
         }
     }
 }
