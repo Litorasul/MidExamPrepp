@@ -38,7 +38,7 @@ namespace P02.BreadFactory
                 else if (eventName == "order")
                 {
                     energy -= 30;
-                    if (energy > 0)
+                    if (energy >= 0)
                     {                   
                         coins += eventPower;
                         Console.WriteLine($"You earned {eventPower} coins.");
@@ -60,7 +60,7 @@ namespace P02.BreadFactory
                     else
                     {
                         Console.WriteLine($"Closed! Cannot afford {eventName}.");
-                        return;
+                        break;
                     }
                 }
             }
