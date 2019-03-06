@@ -39,11 +39,12 @@ namespace P02.BreadFactory
                 }
                 else if (eventName == "order")
                 {
-                    energy -= 30;
-                    if (energy >= 0)
+                   
+                    if (energy >= 30)
                     {                   
                         coins += eventPower;
                         Console.WriteLine($"You earned {eventPower} coins.");
+                        energy -= 30;
                     }
                     else
                     {

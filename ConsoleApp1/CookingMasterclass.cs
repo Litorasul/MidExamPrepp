@@ -13,31 +13,38 @@ namespace ConsoleApp1
             decimal eggPerPiece = decimal.Parse(Console.ReadLine());
             decimal apronPerPiece = decimal.Parse(Console.ReadLine());
 
-            decimal flourBudget = 0;
-            if (students < 5)
+            if (students != 0)
             {
-                flourBudget = students * flourPerPackage;
+                decimal flourBudget = 0;
+                if (students < 5)
+                {
+                    flourBudget = students * flourPerPackage;
+                }
+                else
+                {
+                    flourBudget = students * (flourPerPackage - (flourPerPackage * (decimal)0.2));
+                }
+
+                decimal eggBudget = eggPerPiece * 10 * students;
+                decimal apronsNeeded = Math.Ceiling(students + (decimal)(students * 0.2));
+                decimal apronBudget = apronPerPiece * apronsNeeded;
+
+
+                decimal budgetNeeded = flourBudget + eggBudget + apronBudget;
+
+                if (budget >= budgetNeeded)
+                {
+                    Console.WriteLine($"Items purchased for {budgetNeeded:F2}$.");
+                }
+                else
+                {
+                    decimal notEnough = budgetNeeded - budget;
+                    Console.WriteLine($"{notEnough:F2}$ more needed.");
+                }
             }
             else
             {
-                flourBudget = students * (flourPerPackage - (flourPerPackage * (decimal)0.2));
-            }
-            
-            decimal eggBudget = eggPerPiece * 10 * students;
-            decimal apronsNeeded = Math.Ceiling(students +(decimal)(students * 0.2));
-            decimal apronBudget = apronPerPiece * apronsNeeded ;
-            
-
-            decimal budgetNeeded = flourBudget + eggBudget + apronBudget;
-
-            if (budget >= budgetNeeded)
-            {
-                Console.WriteLine($"Items purchased for {budgetNeeded:F2}$.");
-            }
-            else
-            {
-                decimal notEnough = budgetNeeded - budget;
-                Console.WriteLine($"{notEnough:F2}$ more needed.");
+                Console.WriteLine($"Items purchased for 0.00$.");
             }
         }
     }
