@@ -7,45 +7,43 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            decimal budget = decimal.Parse(Console.ReadLine());
+            double budget = double.Parse(Console.ReadLine());
             int students = int.Parse(Console.ReadLine());
-            decimal flourPerPackage = decimal.Parse(Console.ReadLine());
-            decimal eggPerPiece = decimal.Parse(Console.ReadLine());
-            decimal apronPerPiece = decimal.Parse(Console.ReadLine());
+            double flourPerPackage = double.Parse(Console.ReadLine());
+            double eggPerPiece = double.Parse(Console.ReadLine());
+            double apronPerPiece = double.Parse(Console.ReadLine());
 
-            if (students != 0)
+            int freeFlour = freeFlour = students / 5;
+            double flourBudget = 0;
+
+            if (students > 5)
             {
-                decimal flourBudget = 0;
-                if (students < 5)
-                {
-                    flourBudget = students * flourPerPackage;
-                }
-                else
-                {
-                    flourBudget = students * (flourPerPackage - (flourPerPackage * (decimal)0.2));
-                }
-
-                decimal eggBudget = eggPerPiece * 10 * students;
-                decimal apronsNeeded = Math.Ceiling(students + (decimal)(students * 0.2));
-                decimal apronBudget = apronPerPiece * apronsNeeded;
-
-
-                decimal budgetNeeded = flourBudget + eggBudget + apronBudget;
-
-                if (budget >= budgetNeeded)
-                {
-                    Console.WriteLine($"Items purchased for {budgetNeeded:F2}$.");
-                }
-                else
-                {
-                    decimal notEnough = budgetNeeded - budget;
-                    Console.WriteLine($"{notEnough:F2}$ more needed.");
-                }
+                flourBudget =  flourPerPackage * (students - freeFlour);
+            }
+            else if (students == 5)
+            {
+                flourBudget = flourPerPackage * 4;
             }
             else
             {
-                Console.WriteLine($"Items purchased for 0.00$.");
+                flourBudget = flourPerPackage * students;
             }
+                     
+            double eggBudget = eggPerPiece * 10 * students;
+            double apronsNeeded = Math.Ceiling(students + (students * 1.2));
+            double apronBudget = apronPerPiece * apronsNeeded;
+            double budgetNeeded = flourBudget + eggBudget + apronBudget;
+
+            if (budget > budgetNeeded)
+            {
+                Console.WriteLine($"Items purchased for {budgetNeeded:F2}$.");
+            }
+            else
+            {
+                double notEnough = budgetNeeded - budget;
+                Console.WriteLine($"{notEnough:F2}$ more needed.");
+            }
+
         }
     }
 }
