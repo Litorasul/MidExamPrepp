@@ -17,7 +17,7 @@ namespace P03.CookingFactory
             int bestAverage = 0;
 
 
-          
+
 
 
             while (input != "Bake It!")
@@ -27,7 +27,16 @@ namespace P03.CookingFactory
                 List<int> curentBatch = input.Split("#").Select(int.Parse).ToList();
                 int curentBatchElements = curentBatch.Count();
                 int curentQuality = curentBatch.Sum();
-                int curentAverage = curentQuality / curentBatchElements;
+                int curentAverage = 1;
+
+                if (curentBatchElements != 0 && curentQuality != 0)
+                {
+                    curentAverage = curentQuality / curentBatchElements;
+                }
+                else
+                {
+                    curentAverage = 1;
+                }
 
                 if (curentQuality > bestQuality)
                 {
@@ -47,9 +56,16 @@ namespace P03.CookingFactory
 
                 bestBatchElements = bestBatch.Count();
                 bestQuality = bestBatch.Sum();
-                bestAverage = bestQuality / bestBatchElements;
+                if (bestQuality != 0 && bestBatchElements != 0)
+                {
+                    bestAverage = bestQuality / bestBatchElements;
+                }
+                else
+                {
+                    bestAverage = 0;
+                }
 
-                
+
                 input = Console.ReadLine();
 
 
