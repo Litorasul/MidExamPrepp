@@ -8,18 +8,18 @@ namespace P02.BreadFactory
         static void Main(string[] args)
         {
             string[] input = Console.ReadLine().Split("|").ToArray();
-            long energy = 100;
-            long coins = 100;
+            int energy = 100;
+            int coins = 100;
 
             for (int i = 0; i < input.Length; i++)
             {
                 string[] events = input[i].Split("-").ToArray();
                 string eventName = events[0];
-                long eventPower = long.Parse(events[1]);
+                int eventPower = int.Parse(events[1]);
 
                 if (eventName == "rest")
                 {
-                    long currentEnergy = energy;
+                    int currentEnergy = energy;
                     energy += eventPower;
 
                     if (energy > 100)
@@ -56,7 +56,7 @@ namespace P02.BreadFactory
                 else
                 {
                     coins -= eventPower;
-                    if (coins >= 0)
+                    if (coins > 0)
                     {
                         Console.WriteLine($"You bought {eventName}.");
                     }
